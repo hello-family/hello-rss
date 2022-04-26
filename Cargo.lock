@@ -674,6 +674,10 @@ dependencies = [
 [[package]]
 name = "entity"
 version = "0.1.0"
+dependencies = [
+ "sea-orm",
+ "serde",
+]
 
 [[package]]
 name = "event-listener"
@@ -1236,6 +1240,7 @@ checksum = "308cc39be01b73d0d18f82a0e7b2a3df85245f84af96fdddc5d202d27e47b86a"
 name = "migration"
 version = "0.1.0"
 dependencies = [
+ "entity",
  "sea-schema",
 ]
 
@@ -1983,10 +1988,12 @@ dependencies = [
  "async-trait",
  "clap",
  "dotenv",
+ "futures",
  "log",
  "sea-orm",
  "sea-query 0.22.0",
  "sea-schema-derive",
+ "sqlx",
  "tracing",
  "tracing-subscriber",
 ]
