@@ -13,7 +13,7 @@ copy .sample.env .env
 ### 2.运行数据库迁移
 
 ```
-sea-orm-cli migrate
+cargo run
 ```
 
 ### 3.运行服务

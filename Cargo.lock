@@ -1988,12 +1988,10 @@ dependencies = [
  "async-trait",
  "clap",
  "dotenv",
- "futures",
  "log",
  "sea-orm",
  "sea-query 0.22.0",
  "sea-schema-derive",
- "sqlx",
  "tracing",
  "tracing-subscriber",
 ]
