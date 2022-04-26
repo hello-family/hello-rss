@@ -10,10 +10,8 @@ HelloRSS Server
 copy .sample.env .env
 ```
 
-### 2.运行数据库迁移
+### 2.运行服务
 
 ```
 cargo run
 ```
-
-### 3.运行服务
