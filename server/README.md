@@ -17,3 +17,25 @@ cp .sample.env .env
 [1]:https://www.sea-ql.org/SeaORM/docs/generate-entity/sea-orm-cli
 [2]:https://www.sea-ql.org/SeaORM/docs/migration/writing-migration
 [3]:https://www.sea-ql.org/SeaORM/docs/migration/running-migration
+
+
+## TODO
+
+### 建立数据库
+
+* [ ] 用户
+* [ ] 客户端
+* [ ] Token
+* [ ] RSS channel
+* [ ] RSS item
+* [ ] Rss History
+
+### 生成entity
+
+### 生成migration
+
+### 测试migration
+
+### 编写业务逻辑
+
+### 编写接口
