@@ -6,5 +6,6 @@ edition = "2021"
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
 [dependencies]
-sea-orm = { version = "0.7.1", default-features = false, features = ["sqlx", "sqlx-sqlite", "sqlx-mysql", "sqlx-postgres", "runtime-tokio-rustls", "debug-print"] }
+chrono = "0.4.19"
+sea-orm = { version = "0.7.1", default-features = false, features = ["sqlx", "sqlx-sqlite", "sqlx-mysql", "sqlx-postgres", "runtime-tokio-native-tls", "debug-print"] }
 serde = { version = "1.0.136", features = ["derive"] }
