@@ -1,0 +1,7 @@
+{
+  "rust-client.engine": "rust-analyzer",
+  "rust.all_features": true,
+  "rust.features": [],
+  "editor.formatOnSave": true,
+  "rust-client.channel": "default"
+}
