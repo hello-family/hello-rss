@@ -1,17 +1,15 @@
-HelloRSS Server
-================================================================
+# Hello RSS
 
+## 开发向导
 
-## 开发流程
-
-### 1.创建.env文件
+### 创建.env 文件
 
 ```shell
-copy .sample.env .env
+cp .sample.env .env
 ```
 
 ### 2.运行服务
 
-```
+```shell
 cargo run
 ```
