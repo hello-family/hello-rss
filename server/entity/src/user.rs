@@ -1,23 +1,30 @@
-use chrono::NaiveDateTime;
 use sea_orm::entity::prelude::*;
 use serde::{Deserialize, Serialize};
 
-#[derive(Clone, Debug, PartialEq, Serialize, Deserialize, DeriveEntityModel)]
+#[derive(Clone, Debug, PartialEq, DeriveEntityModel, Deserialize, Serialize)]
 #[sea_orm(table_name = "user")]
 pub struct Model {
     #[sea_orm(primary_key)]
-    pub id: u32,
+    pub id: i32,
+
+    #[sea_orm(unique)]
     pub username: String,
+
+    #[sea_orm(unique)]
+    pub email: String,
+
     #[serde(skip_deserializing)]
     pub password: String,
-    pub email: String,
+
     pub status: Status,
-    pub create_at: NaiveDateTime,
-    pub update_at: NaiveDateTime,
+
+    pub create_at: DateTimeUtc,
+
+    pub update_at: DateTimeUtc,
 }
 
 #[derive(EnumIter, DeriveActiveEnum, Serialize, Deserialize, Debug, Clone, PartialEq)]
-#[sea_orm(rs_type = "u8", db_type = "TinyUnsigned")]
+#[sea_orm(rs_type = "u16", db_type = "SmallUnsigned")]
 pub enum Status {
     #[sea_orm(num_value = 0)]
     Inactive,
@@ -25,12 +32,15 @@ pub enum Status {
     Active,
 }
 
-#[derive(Copy, Clone, Debug, EnumIter)]
-pub enum Relation {}
+#[derive(Copy, Clone, Debug, EnumIter, DeriveRelation)]
+pub enum Relation {
+    #[sea_orm(has_many = "super::user_session::Entity")]
+    UserSession,
+}
 
-impl RelationTrait for Relation {
-    fn def(&self) -> RelationDef {
-        panic!("No RelationDef")
+impl Related<super::user_session::Entity> for Entity {
+    fn to() -> RelationDef {
+        Relation::UserSession.def()
     }
 }
 
