@@ -5,7 +5,7 @@ pub struct Migration;
 
 impl MigrationName for Migration {
     fn name(&self) -> &str {
-        "m20220428_000002_create_user_client_table"
+        "m20220428_000002_create_client_table"
     }
 }
 
@@ -15,29 +15,29 @@ impl MigrationTrait for Migration {
         manager
             .create_table(
                 Table::create()
-                    .table(user_client::Entity)
+                    .table(client::Entity)
                     .if_not_exists()
                     .col(
-                        ColumnDef::new(user_client::Column::Id)
+                        ColumnDef::new(client::Column::Id)
                             .small_integer()
                             .not_null()
                             .auto_increment()
                             .primary_key(),
                     )
                     .col(
-                        ColumnDef::new(user_client::Column::Name)
+                        ColumnDef::new(client::Column::Name)
                             .string()
                             .string_len(20)
                             .unique_key()
                             .not_null(),
                     )
                     .col(
-                        ColumnDef::new(user_client::Column::Expire)
+                        ColumnDef::new(client::Column::Expire)
                             .integer()
                             .not_null(),
                     )
                     .col(
-                        ColumnDef::new(user_client::Column::CreateAt)
+                        ColumnDef::new(client::Column::CreateAt)
                             .timestamp()
                             .not_null(),
                     )
@@ -48,7 +48,7 @@ impl MigrationTrait for Migration {
 
     async fn down(&self, manager: &SchemaManager) -> Result<(), DbErr> {
         manager
-            .drop_table(Table::drop().table(user_client::Entity).to_owned())
+            .drop_table(Table::drop().table(client::Entity).to_owned())
             .await
     }
 }

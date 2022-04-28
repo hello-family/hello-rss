@@ -34,13 +34,13 @@ pub enum Status {
 
 #[derive(Copy, Clone, Debug, EnumIter, DeriveRelation)]
 pub enum Relation {
-    #[sea_orm(has_many = "super::user_session::Entity")]
-    UserSession,
+    #[sea_orm(has_many = "super::access_token::Entity")]
+    AccessToken,
 }
 
-impl Related<super::user_session::Entity> for Entity {
+impl Related<super::access_token::Entity> for Entity {
     fn to() -> RelationDef {
-        Relation::UserSession.def()
+        Relation::AccessToken.def()
     }
 }
 

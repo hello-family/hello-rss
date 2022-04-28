@@ -24,11 +24,11 @@ cp .sample.env .env
 ### 数据库设计
 
 * [ ] user
-* [ ] user_client
+* [ ] client
 * [ ] user_session
 * [ ] rss_channel
 * [ ] rss_item
-* [ ] favorite_rss_item
+* [ ] favorite
 
 ### 用户接口
 

@@ -1,7 +1,7 @@
 use sea_orm::entity::prelude::*;
 
 #[derive(Clone, Debug, PartialEq, DeriveEntityModel)]
-#[sea_orm(table_name = "user_session")]
+#[sea_orm(table_name = "access_token")]
 pub struct Model {
     #[sea_orm(primary_key)]
     pub id: i16,
@@ -17,13 +17,13 @@ pub struct Model {
 #[derive(Copy, Clone, Debug, EnumIter, DeriveRelation)]
 pub enum Relation {
     #[sea_orm(
-        belongs_to = "super::user_client::Entity",
+        belongs_to = "super::client::Entity",
         from = "Column::ClientId",
-        to = "super::user_client::Column::Id",
+        to = "super::client::Column::Id",
         on_update = "NoAction",
         on_delete = "NoAction"
     )]
-    UserClient,
+    Client,
     #[sea_orm(
         belongs_to = "super::user::Entity",
         from = "Column::UserId",
@@ -34,9 +34,9 @@ pub enum Relation {
     User,
 }
 
-impl Related<super::user_client::Entity> for Entity {
+impl Related<super::client::Entity> for Entity {
     fn to() -> RelationDef {
-        Relation::UserClient.def()
+        Relation::Client.def()
     }
 }
 
