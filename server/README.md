@@ -10,9 +10,9 @@ cp .sample.env .env
 
 ### 数据库开发步骤
 
-* [已有数据库生成Entity或手动编辑Entity][1]
-* [编写数据库升级和降级程序][2]
-* [运行数据库升级和降级测试][3]
+1. [在entity/src新增Entity][1]
+2. [在migration/src新增migration][2]
+3. [进入migration目录运行`cargo run`进行数据库迁移][3]
 
 [1]:https://www.sea-ql.org/SeaORM/docs/generate-entity/sea-orm-cli
 [2]:https://www.sea-ql.org/SeaORM/docs/migration/writing-migration
@@ -26,11 +26,11 @@ cp .sample.env .env
 * [x] user
 * [x] client
 * [x] access_token
-* [ ] rss_channel
+* [x] rss_channel
 * [ ] rss_item
 * [ ] favorite
 
-### 用户接口
+### user 接口
 
 * [ ] user/signup 注册
 * [ ] user/activate 激活
@@ -43,15 +43,21 @@ cp .sample.env .env
 * [ ] user/reset_password 重置密码
 * [ ] user/reset_password_confirm 重置密码确认
 
-### RSS接口
+### rss 接口
 
-* [ ] rss/channel/list 获取用户的RSS频道列表
 * [ ] rss/channel/add 添加RSS频道
 * [ ] rss/channel/delete 删除RSS频道
 * [ ] rss/channel/update 更新RSS频道
+* [ ] rss/channel/list 获取用户的RSS频道列表
 * [ ] rss/channel/info 获取RSS频道信息
 * [ ] rss/channel/fetch 更新RSS频道内容
 * [ ] rss/channel/read_all 标记全部已读
 * [ ] rss/item/list 获取RSS频道的RSS项目列表
 * [ ] rss/item/read 标记条目已读
-* [ ] rss/item/favorite 收藏
+
+
+### favorite 接口
+
+* [ ] favorite/add 新增收藏
+* [ ] favorite/list 获取收藏列表
+* [ ] favorite/delete 取消收藏

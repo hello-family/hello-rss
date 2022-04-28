@@ -8,13 +8,6 @@ impl MigrationName for Migration {
         "m20220428_000004_create_rss_channel_table"
     }
 }
-// pub docs: Option<String>,
-// pub image: Option<String>,
-// pub skip_hours: DateTimeUtc,
-// pub skip_days: DateTimeUtc,
-// pub ttl: Option<i32>,
-// pub update_at: DateTimeUtc,
-// pub create_at: DateTimeUtc,
 #[async_trait::async_trait]
 impl MigrationTrait for Migration {
     async fn up(&self, manager: &SchemaManager) -> Result<(), DbErr> {
@@ -108,7 +101,7 @@ impl MigrationTrait for Migration {
 
     async fn down(&self, manager: &SchemaManager) -> Result<(), DbErr> {
         manager
-            .drop_table(Table::drop().table(access_token::Entity).to_owned())
+            .drop_table(Table::drop().table(rss_channel::Entity).to_owned())
             .await
     }
 }
