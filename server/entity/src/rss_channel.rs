@@ -17,6 +17,8 @@ pub struct Model {
     pub skip_hours: Json,
     pub skip_days: Json,
     pub ttl: Option<i32>,
+    #[sea_orm(default = "0")]
+    pub unread: i32,
     pub update_at: DateTimeUtc,
     pub create_at: DateTimeUtc,
 }

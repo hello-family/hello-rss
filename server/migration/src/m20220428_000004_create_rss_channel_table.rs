@@ -76,6 +76,11 @@ impl MigrationTrait for Migration {
                             .integer()
                     )
                     .col(
+                        ColumnDef::new(rss_channel::Column::Unread)
+                            .integer()
+                            .default(0)
+                    )
+                    .col(
                         ColumnDef::new(rss_channel::Column::CreateAt)
                             .timestamp()
                             .not_null()
