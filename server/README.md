@@ -21,21 +21,37 @@ cp .sample.env .env
 
 ## TODO
 
-### 建立数据库
+### 数据库设计
 
-* [ ] 用户
-* [ ] 客户端
-* [ ] Token
-* [ ] RSS channel
-* [ ] RSS item
-* [ ] Rss History
+* [ ] user
+* [ ] user_client
+* [ ] user_session
+* [ ] rss_channel
+* [ ] rss_item
+* [ ] favorite_rss_item
 
-### 生成entity
+### 用户接口
 
-### 生成migration
+* [ ] user/signup 注册
+* [ ] user/activate 激活
+* [ ] user/login 登录
+* [ ] user/info 获取用户信息
+* [ ] user/logout 登出
+* [ ] user/change_password 修改密码
+* [ ] user/change_email 修改邮箱
+* [ ] user/change_email_confirm 修改邮箱确认
+* [ ] user/reset_password 重置密码
+* [ ] user/reset_password_confirm 重置密码确认
 
-### 测试migration
+### RSS接口
 
-### 编写业务逻辑
-
-### 编写接口
+* [ ] rss/channel/list 获取用户的RSS频道列表
+* [ ] rss/channel/add 添加RSS频道
+* [ ] rss/channel/delete 删除RSS频道
+* [ ] rss/channel/update 更新RSS频道
+* [ ] rss/channel/info 获取RSS频道信息
+* [ ] rss/channel/fetch 更新RSS频道内容
+* [ ] rss/channel/read_all 标记全部已读
+* [ ] rss/item/list 获取RSS频道的RSS项目列表
+* [ ] rss/item/read 标记条目已读
+* [ ] rss/item/favorite 收藏

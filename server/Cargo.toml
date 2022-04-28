@@ -1,7 +1,7 @@
 [package]
-edition = "2021"
 name = "hello-rss-server"
 version = "0.1.0"
+edition = "2021"
 
 [workspace]
 members = [".", "entity", "migration"]
@@ -11,16 +11,16 @@ anyhow = "1.0.57"
 axum = "0.5.3"
 chrono = "0.4.19"
 dotenv = "0.15.0"
-entity = {path = "entity"}
-migration = {path = "migration"}
 reqwest = "0.11.10"
 rss = "2.0.1"
-sea-orm = {version = "0.7.1", default-features = false, features = ["runtime-tokio-native-tls", "debug-print"]}
+sea-orm = {version = "0.7.1", default-features = false, features = ["runtime-tokio-native-tls", "macros", "debug-print"]}
 serde = {version = "1.0.136", features = ["derive"]}
 serde_json = "1.0.79"
-tokio = {version = "1.17.0", features = ["full"]}
+tokio = { version = "1.17.0", features = ["full"] }
 toml = "0.5.9"
-tower = {version = "0.4.12", features = ["util", "timeout"]}
-tower-http = {version = "0.3.0", features = ["trace", "add-extension"]}
+tower = { version = "0.4.12", features = ["util", "timeout"] }
+tower-http = { version = "0.3.0", features = ["trace", "add-extension"] }
 tracing = "0.1.34"
-tracing-subscriber = {version = "0.3.11", features = ["env-filter"]}
+tracing-subscriber = { version = "0.3.11", features = ["env-filter"] }
+entity = { path = "entity" }
+migration = { path = "migration" }
