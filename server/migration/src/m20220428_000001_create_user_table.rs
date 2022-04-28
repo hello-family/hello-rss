@@ -5,7 +5,7 @@ pub struct Migration;
 
 impl MigrationName for Migration {
     fn name(&self) -> &str {
-        "m20220101_000001_create_table"
+        "m20220428_000001_create_user_table"
     }
 }
 
@@ -19,7 +19,6 @@ impl MigrationTrait for Migration {
                     .if_not_exists()
                     .col(
                         ColumnDef::new(user::Column::Id)
-                            .unsigned()
                             .integer()
                             .not_null()
                             .auto_increment()
@@ -29,6 +28,14 @@ impl MigrationTrait for Migration {
                         ColumnDef::new(user::Column::Username)
                             .string()
                             .string_len(20)
+                            .unique_key()
+                            .not_null(),
+                    )
+                    .col(
+                        ColumnDef::new(user::Column::Email)
+                            .string()
+                            .string_len(128)
+                            .unique_key()
                             .not_null(),
                     )
                     .col(
@@ -38,44 +45,20 @@ impl MigrationTrait for Migration {
                             .not_null(),
                     )
                     .col(
-                        ColumnDef::new(user::Column::Email)
-                            .string()
-                            .string_len(128)
-                            .not_null(),
-                    )
-                    .col(
                         ColumnDef::new(user::Column::Status)
-                            .tiny_unsigned()
+                            .small_unsigned()
                             .not_null(),
                     )
                     .col(
                         ColumnDef::new(user::Column::CreateAt)
-                            .date_time()
+                            .timestamp()
                             .not_null(),
                     )
                     .col(
                         ColumnDef::new(user::Column::UpdateAt)
-                            .date_time()
+                            .timestamp()
                             .not_null(),
                     )
-                    .to_owned(),
-            ).await?;
-            manager.create_index(
-                Index::create()
-                    .name("idx-username")
-                    .unique()
-                    .table(user::Entity)
-                    .col(user::Column::Username)
-                    .to_owned(),
-            )
-            .await?;
-        manager
-            .create_index(
-                Index::create()
-                    .name("idx-email")
-                    .unique()
-                    .table(user::Entity)
-                    .col(user::Column::Email)
                     .to_owned(),
             )
             .await
