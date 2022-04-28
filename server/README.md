@@ -23,9 +23,9 @@ cp .sample.env .env
 
 ### 数据库设计
 
-* [ ] user
-* [ ] client
-* [ ] user_session
+* [x] user
+* [x] client
+* [x] access_token
 * [ ] rss_channel
 * [ ] rss_item
 * [ ] favorite

@@ -4,9 +4,9 @@ use sea_orm::entity::prelude::*;
 #[sea_orm(table_name = "access_token")]
 pub struct Model {
     #[sea_orm(primary_key)]
-    pub id: i16,
+    pub id: i32,
     pub user_id: i32,
-    pub client_id: i32,
+    pub client_id: i16,
     pub access_token: String,
     pub refresh_token: String,
     pub expire_at: DateTimeUtc,
