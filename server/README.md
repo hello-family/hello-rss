@@ -26,8 +26,8 @@ cp .sample.env .env
 - [x] client
 - [x] access_token
 - [x] rss_channel
-- [ ] rss_item
-- [ ] favorite
+- [x] rss_item
+- [x] favorite
 
 ### user 接口
 
