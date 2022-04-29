@@ -36,6 +36,10 @@ pub enum Status {
 pub enum Relation {
     #[sea_orm(has_many = "super::access_token::Entity")]
     AccessToken,
+    #[sea_orm(has_many = "super::rss_channel::Entity")]
+    RssChannel,
+    #[sea_orm(has_many = "super::rss_item::Entity")]
+    RssItem,
 }
 
 impl Related<super::access_token::Entity> for Entity {
@@ -43,5 +47,18 @@ impl Related<super::access_token::Entity> for Entity {
         Relation::AccessToken.def()
     }
 }
+
+impl Related<super::rss_channel::Entity> for Entity {
+    fn to() -> RelationDef {
+        Relation::RssChannel.def()
+    }
+}
+
+impl Related<super::rss_item::Entity> for Entity {
+    fn to() -> RelationDef {
+        Relation::RssItem.def()
+    }
+}
+
 
 impl ActiveModelBehavior for ActiveModel {}

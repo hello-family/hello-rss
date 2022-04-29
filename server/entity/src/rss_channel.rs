@@ -34,6 +34,8 @@ pub enum Relation {
         on_delete = "NoAction"
     )]
     User,
+    #[sea_orm(has_many = "super::rss_item::Entity")]
+    RssItem,
 }
 
 impl Related<super::user::Entity> for Entity {
@@ -41,5 +43,12 @@ impl Related<super::user::Entity> for Entity {
         Relation::User.def()
     }
 }
+
+impl Related<super::rss_item::Entity> for Entity {
+    fn to() -> RelationDef {
+        Relation::RssItem.def()
+    }
+}
+
 
 impl ActiveModelBehavior for ActiveModel {}

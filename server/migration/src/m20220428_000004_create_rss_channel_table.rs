@@ -20,80 +20,55 @@ impl MigrationTrait for Migration {
                         ColumnDef::new(rss_channel::Column::Id)
                             .integer()
                             .auto_increment()
-                            .primary_key()
+                            .primary_key(),
                     )
                     .col(
                         ColumnDef::new(rss_channel::Column::UserId)
                             .integer()
-                            .not_null()
+                            .not_null(),
                     )
-                    .col(
-                        ColumnDef::new(rss_channel::Column::Url)
-                            .string()
-                            .not_null()
-                    )
+                    .col(ColumnDef::new(rss_channel::Column::Url).string().not_null())
                     .col(
                         ColumnDef::new(rss_channel::Column::Title)
                             .string()
-                            .not_null()
+                            .not_null(),
                     )
                     .col(
                         ColumnDef::new(rss_channel::Column::Link)
                             .string()
-                            .not_null()
+                            .not_null(),
                     )
                     .col(
                         ColumnDef::new(rss_channel::Column::Description)
                             .string()
-                            .not_null()
+                            .not_null(),
                     )
                     .col(
                         ColumnDef::new(rss_channel::Column::Language)
                             .string()
-                            .string_len(20)
+                            .string_len(20),
                     )
-                    .col(
-                        ColumnDef::new(rss_channel::Column::PubDate)
-                            .timestamp()
-                    )
-                    .col(
-                        ColumnDef::new(rss_channel::Column::LastBuildDate)
-                            .timestamp()
-                    )
-                    .col(
-                        ColumnDef::new(rss_channel::Column::Docs)
-                            .string()
-                    )
-                    .col(
-                        ColumnDef::new(rss_channel::Column::Image)
-                            .string()
-                    )
-                    .col(
-                        ColumnDef::new(rss_channel::Column::SkipHours)
-                            .json()
-                    )
-                    .col(
-                        ColumnDef::new(rss_channel::Column::SkipDays)
-                            .json()
-                    )
-                    .col(
-                        ColumnDef::new(rss_channel::Column::Ttl)
-                            .integer()
-                    )
+                    .col(ColumnDef::new(rss_channel::Column::PubDate).timestamp())
+                    .col(ColumnDef::new(rss_channel::Column::LastBuildDate).timestamp())
+                    .col(ColumnDef::new(rss_channel::Column::Docs).string())
+                    .col(ColumnDef::new(rss_channel::Column::Image).string())
+                    .col(ColumnDef::new(rss_channel::Column::SkipHours).json())
+                    .col(ColumnDef::new(rss_channel::Column::SkipDays).json())
+                    .col(ColumnDef::new(rss_channel::Column::Ttl).integer())
                     .col(
                         ColumnDef::new(rss_channel::Column::Unread)
                             .integer()
-                            .default(0)
+                            .default(0),
                     )
                     .col(
                         ColumnDef::new(rss_channel::Column::CreateAt)
                             .timestamp()
-                            .not_null()
+                            .not_null(),
                     )
                     .col(
                         ColumnDef::new(rss_channel::Column::UpdateAt)
                             .timestamp()
-                            .not_null()
+                            .not_null(),
                     )
                     .to_owned(),
             )

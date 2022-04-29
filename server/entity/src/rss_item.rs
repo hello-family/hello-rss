@@ -42,12 +42,18 @@ pub enum Relation {
         on_update = "NoAction",
         on_delete = "NoAction"
     )]
-    Channel,
+    RssChannel,
 }
 
 impl Related<super::user::Entity> for Entity {
     fn to() -> RelationDef {
         Relation::User.def()
+    }
+}
+
+impl Related<super::rss_channel::Entity> for Entity {
+    fn to() -> RelationDef {
+        Relation::RssChannel.def()
     }
 }
 
