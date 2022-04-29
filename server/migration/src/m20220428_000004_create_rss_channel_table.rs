@@ -38,6 +38,11 @@ impl MigrationTrait for Migration {
                             .not_null()
                     )
                     .col(
+                        ColumnDef::new(rss_channel::Column::Link)
+                            .string()
+                            .not_null()
+                    )
+                    .col(
                         ColumnDef::new(rss_channel::Column::Description)
                             .string()
                             .not_null()
