@@ -13,7 +13,7 @@ pub struct Model {
     #[sea_orm(unique)]
     pub email: String,
 
-    #[serde(skip_deserializing)]
+    #[serde(skip_deserializing, skip_serializing)]
     pub password: String,
 
     pub status: Status,
@@ -59,6 +59,5 @@ impl Related<super::rss_item::Entity> for Entity {
         Relation::RssItem.def()
     }
 }
-
 
 impl ActiveModelBehavior for ActiveModel {}

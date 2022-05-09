@@ -59,3 +59,9 @@ cp .sample.env .env
 - [ ] favorite/add 新增收藏
 - [ ] favorite/list 获取收藏列表
 - [ ] favorite/delete 取消收藏
+
+
+## 开发参考
+
+* [Axum JWT example](https://github.com/z4rx/axum_jwt_example)
+* [Book management](https://github.com/lz1998/axum-book-management)
