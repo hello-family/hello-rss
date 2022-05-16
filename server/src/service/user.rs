@@ -1,15 +1,26 @@
 use chrono::Utc;
+use sea_orm::{ColumnTrait, DatabaseConnection, EntityTrait, QueryFilter};
 
-use crate::dto::user::{LoginInput, RegisterInput};
-use entity::prelude::*;
+use crate::{
+    dto::user::{LoginInput, RegisterInput},
+    error::{Error, Result},
+    utils::encryption,
+};
+use entity::{prelude::User, user};
 
 pub struct UserService;
 
 impl UserService {
-    pub async fn login(input: LoginInput, pool: &DatabaseConnection) -> Result<User> {
-        let user = User::find_by_username(&input.username, &pool).await?;
-        if encryption::verify_password(input.password, user.password.to_owned()).await? {
-            Ok(user)
+    pub async fn login(input: LoginInput, db: &DatabaseConnection) -> Result<user::Model> {
+        let entity: user::Model = User::find()
+            .filter(user::Column::Username.contains(&input.username))
+            .one(db)
+            .await
+            .unwrap()
+            .unwrap()
+            .into();
+        if encryption::verify_password(input.password, entity.password.to_owned()).await? {
+            Ok(entity)
         } else {
             Err(Error::WrongPassword)
         }

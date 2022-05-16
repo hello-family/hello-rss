@@ -8,7 +8,7 @@ members = [".", "entity", "migration"]
 
 [dependencies]
 anyhow = "1.0.57"
-axum = "0.5.3"
+axum = { version = "0.5.3", features = ["headers", "multipart"] }
 chrono = "0.4.19"
 dotenv = "0.15.0"
 reqwest = "0.11.10"

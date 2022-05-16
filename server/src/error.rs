@@ -7,8 +7,6 @@ pub enum Error {
     #[error(transparent)]
     BcryptError(#[from] bcrypt::BcryptError),
     #[error(transparent)]
-    SqlxError(#[from] sqlx::Error),
-    #[error(transparent)]
     JwtError(#[from] jsonwebtoken::errors::Error),
     #[error(transparent)]
     TokioRecvError(#[from] tokio::sync::oneshot::error::RecvError),
