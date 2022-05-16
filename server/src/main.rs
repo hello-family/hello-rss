@@ -1,13 +1,21 @@
+#[macro_use]
+extern crate serde;
+#[macro_use]
+extern crate lazy_static;
+
 mod api;
 mod app;
 mod config;
 mod db;
+mod dto;
+mod error;
 mod router;
-mod validator;
+mod service;
+mod utils;
 
-use crate::config::config;
 use app::app;
 use axum::Server;
+use config::APP_CONFIG;
 #[cfg(debug_assertions)]
 use dotenv::dotenv;
 use std::net::SocketAddr;
@@ -22,11 +30,9 @@ async fn main() -> anyhow::Result<()> {
         .with_max_level(tracing::Level::DEBUG)
         .init();
 
-    let config = config();
-
-    let addr = SocketAddr::from_str(&config.server_url).unwrap();
+    let addr = SocketAddr::from_str(&APP_CONFIG.server_url).unwrap();
     Server::bind(&addr)
-        .serve(app(config).await.into_make_service())
+        .serve(app(&APP_CONFIG).await.into_make_service())
         .await?;
 
     Ok(())

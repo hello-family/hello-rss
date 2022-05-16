@@ -7,7 +7,7 @@ edition = "2021"
 
 [dependencies]
 chrono = "0.4.19"
-sea-orm = { version = "0.7.1", default-features = false, features = [
+sea-orm = { version = "0.8.0", default-features = false, features = [
     "with-json",
     "sqlx",
     "sqlx-sqlite",

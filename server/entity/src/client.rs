@@ -1,13 +1,27 @@
 use sea_orm::entity::prelude::*;
+use serde::{Deserialize, Serialize};
 
 #[derive(Clone, Debug, PartialEq, DeriveEntityModel)]
 #[sea_orm(table_name = "client")]
 pub struct Model {
     #[sea_orm(primary_key)]
     pub id: i16,
-    pub name: String,
+    pub name: ClientType,
     pub expire: i32,
     pub create_at: DateTimeUtc,
+}
+
+#[derive(EnumIter, DeriveActiveEnum, Serialize, Deserialize, Debug, Clone, PartialEq)]
+#[sea_orm(rs_type = "String", db_type = "String(Some(12))")]
+pub enum ClientType {
+    #[sea_orm(string_value = "Desktop")]
+    Desktop,
+    #[sea_orm(string_value = "Web")]
+    Web,
+    #[sea_orm(string_value = "Android")]
+    Android,
+    #[sea_orm(string_value = "iOS")]
+    IOS,
 }
 
 #[derive(Copy, Clone, Debug, EnumIter, DeriveRelation)]

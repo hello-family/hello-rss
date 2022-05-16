@@ -1,4 +1,4 @@
-pub use sea_schema::migration::prelude::*;
+pub use sea_orm_migration::prelude::*;
 
 mod m20220428_000001_create_user_table;
 mod m20220428_000002_create_client_table;
