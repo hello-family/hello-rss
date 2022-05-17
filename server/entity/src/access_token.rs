@@ -9,9 +9,9 @@ pub struct Model {
     pub client_id: i16,
     pub access_token: String,
     pub refresh_token: String,
-    pub expire_at: DateTimeUtc,
-    pub create_at: DateTimeUtc,
-    pub update_at: DateTimeUtc,
+    pub expire_at: DateTime,
+    pub create_at: DateTime,
+    pub update_at: DateTime,
 }
 
 #[derive(Copy, Clone, Debug, EnumIter, DeriveRelation)]

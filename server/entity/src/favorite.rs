@@ -7,7 +7,7 @@ pub struct Model {
     pub id: i32,
     pub user_id: i32,
     pub rss_item_id: i32,
-    pub create_at: DateTimeUtc,
+    pub create_at: DateTime,
 }
 
 #[derive(Copy, Clone, Debug, EnumIter, DeriveRelation)]

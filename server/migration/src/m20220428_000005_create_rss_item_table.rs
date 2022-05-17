@@ -57,12 +57,12 @@ impl MigrationTrait for Migration {
                     .col(ColumnDef::new(rss_item::Column::ReadAt).timestamp())
                     .col(
                         ColumnDef::new(rss_item::Column::CreateAt)
-                            .timestamp()
+                            .date_time()
                             .not_null(),
                     )
                     .col(
                         ColumnDef::new(rss_item::Column::UpdateAt)
-                            .timestamp()
+                            .date_time()
                             .not_null(),
                     )
                     .to_owned(),

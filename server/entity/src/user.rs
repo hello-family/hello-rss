@@ -18,9 +18,9 @@ pub struct Model {
 
     pub status: Status,
 
-    pub create_at: DateTimeUtc,
+    pub create_at: DateTime,
 
-    pub update_at: DateTimeUtc,
+    pub update_at: DateTime,
 }
 
 #[derive(EnumIter, DeriveActiveEnum, Serialize, Deserialize, Debug, Clone, PartialEq)]

@@ -38,7 +38,7 @@ impl MigrationTrait for Migration {
                     .col(ColumnDef::new(client::Column::Expire).integer().not_null())
                     .col(
                         ColumnDef::new(client::Column::CreateAt)
-                            .timestamp()
+                            .date_time()
                             .not_null(),
                     )
                     .to_owned(),
@@ -48,25 +48,25 @@ impl MigrationTrait for Migration {
             id: Set(1i16.to_owned()),
             name: Set(ClientType::Desktop.to_owned()),
             expire: Set(0.to_owned()),
-            create_at: Set(Utc::now().to_owned()),
+            create_at: Set(Utc::now().naive_utc().to_owned()),
         };
         let web = client::ActiveModel {
             id: Set(2i16.to_owned()),
             name: Set(ClientType::Web.to_owned()),
             expire: Set(7200.to_owned()),
-            create_at: Set(Utc::now().to_owned()),
+            create_at: Set(Utc::now().naive_utc().to_owned()),
         };
         let android = client::ActiveModel {
             id: Set(3i16.to_owned()),
             name: Set(ClientType::Android.to_owned()),
             expire: Set(0.to_owned()),
-            create_at: Set(Utc::now().to_owned()),
+            create_at: Set(Utc::now().naive_utc().to_owned()),
         };
         let ios = client::ActiveModel {
             id: Set(4i16.to_owned()),
             name: Set(ClientType::IOS.to_owned()),
             expire: Set(0.to_owned()),
-            create_at: Set(Utc::now().to_owned()),
+            create_at: Set(Utc::now().naive_utc().to_owned()),
         };
         client::Entity::insert_many(vec![desktop, web, android, ios])
             .exec(manager.get_connection())

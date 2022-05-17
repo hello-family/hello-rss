@@ -62,12 +62,12 @@ impl MigrationTrait for Migration {
                     )
                     .col(
                         ColumnDef::new(rss_channel::Column::CreateAt)
-                            .timestamp()
+                            .date_time()
                             .not_null(),
                     )
                     .col(
                         ColumnDef::new(rss_channel::Column::UpdateAt)
-                            .timestamp()
+                            .date_time()
                             .not_null(),
                     )
                     .to_owned(),

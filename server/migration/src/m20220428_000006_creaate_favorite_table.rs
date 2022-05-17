@@ -36,7 +36,7 @@ impl MigrationTrait for Migration {
                     )
                     .col(
                         ColumnDef::new(favorite::Column::CreateAt)
-                            .timestamp()
+                            .date_time()
                             .not_null(),
                     )
                     .to_owned(),

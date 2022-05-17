@@ -20,9 +20,9 @@ pub struct Model {
     pub content: Option<String>,
     #[sea_orm(default = "false")]
     pub is_read: bool,
-    pub read_at: Option<DateTimeUtc>,
-    pub update_at: DateTimeUtc,
-    pub create_at: DateTimeUtc,
+    pub read_at: Option<DateTime>,
+    pub update_at: DateTime,
+    pub create_at: DateTime,
 }
 
 #[derive(Copy, Clone, Debug, EnumIter, DeriveRelation)]

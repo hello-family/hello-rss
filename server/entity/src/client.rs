@@ -8,7 +8,7 @@ pub struct Model {
     pub id: i16,
     pub name: ClientType,
     pub expire: i32,
-    pub create_at: DateTimeUtc,
+    pub create_at: DateTime,
 }
 
 #[derive(EnumIter, DeriveActiveEnum, Serialize, Deserialize, Debug, Clone, PartialEq)]

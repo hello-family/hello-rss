@@ -51,12 +51,12 @@ impl MigrationTrait for Migration {
                     )
                     .col(
                         ColumnDef::new(user::Column::CreateAt)
-                            .timestamp()
+                            .date_time()
                             .not_null(),
                     )
                     .col(
                         ColumnDef::new(user::Column::UpdateAt)
-                            .timestamp()
+                            .date_time()
                             .not_null(),
                     )
                     .to_owned(),

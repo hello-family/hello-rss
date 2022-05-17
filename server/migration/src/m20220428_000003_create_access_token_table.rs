@@ -49,17 +49,17 @@ impl MigrationTrait for Migration {
                     )
                     .col(
                         ColumnDef::new(access_token::Column::ExpireAt)
-                            .timestamp()
+                            .date_time()
                             .not_null(),
                     )
                     .col(
                         ColumnDef::new(access_token::Column::CreateAt)
-                            .timestamp()
+                            .date_time()
                             .not_null(),
                     )
                     .col(
                         ColumnDef::new(access_token::Column::UpdateAt)
-                            .timestamp()
+                            .date_time()
                             .not_null(),
                     )
                     .to_owned(),

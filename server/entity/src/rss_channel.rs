@@ -20,8 +20,8 @@ pub struct Model {
     pub ttl: Option<i32>,
     #[sea_orm(default = "0")]
     pub unread: i32,
-    pub update_at: DateTimeUtc,
-    pub create_at: DateTimeUtc,
+    pub update_at: DateTime,
+    pub create_at: DateTime,
 }
 
 #[derive(Copy, Clone, Debug, EnumIter, DeriveRelation)]

@@ -49,8 +49,8 @@ impl UserService {
             username: Set(input.username),
             email: Set(input.email),
             password: Set(encryption::hash_password(input.password).await?),
-            create_at: Set(Utc::now().to_owned()),
-            update_at: Set(Utc::now().to_owned()),
+            create_at: Set(Utc::now().naive_utc().to_owned()),
+            update_at: Set(Utc::now().naive_utc().to_owned()),
             status: Set(user::Status::Inactive),
             ..Default::default()
         };
