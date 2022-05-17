@@ -2,7 +2,7 @@ use entity::{client::ClientType, prelude::User};
 use validator::Validate;
 
 #[derive(Debug, Deserialize, Validate)]
-pub struct RegisterInput {
+pub struct SignupInput {
     pub client: String,
     #[validate(length(min = 4, max = 10))]
     pub username: String,
@@ -19,15 +19,7 @@ pub struct LoginInput {
     pub password: String,
 }
 
-#[derive(Debug)]
-pub struct AuthPayload {
-    pub token: String,
-    pub user: User,
-    pub client: ClientType,
-}
-
 #[derive(Debug, Serialize)]
 pub struct TokenPayload {
     pub access_token: String,
-    pub token_type: String,
 }

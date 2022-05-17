@@ -13,5 +13,5 @@ pub struct Config {
 }
 
 lazy_static! {
-    pub static ref APP_CONFIG: &'static Config = &Config::init_from_env().unwrap();
+    pub static ref APP_CONFIG: Config = Config::init_from_env().unwrap();
 }

@@ -4,7 +4,7 @@ use crate::api::*;
 
 pub fn router() -> Router {
     Router::new()
-        .nest("/user", user::router())
-        .nest("/rss", rss::router())
-        .nest("/favorite", favorite::router())
+        .nest("/user", user())
+        .nest("/rss", rss())
+        .nest("/favorite", favorite())
 }

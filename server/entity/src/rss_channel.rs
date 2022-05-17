@@ -50,5 +50,4 @@ impl Related<super::rss_item::Entity> for Entity {
     }
 }
 
-
 impl ActiveModelBehavior for ActiveModel {}

@@ -24,11 +24,11 @@ pub struct Model {
 }
 
 #[derive(EnumIter, DeriveActiveEnum, Serialize, Deserialize, Debug, Clone, PartialEq)]
-#[sea_orm(rs_type = "u16", db_type = "SmallUnsigned")]
+#[sea_orm(rs_type = "i16", db_type = "SmallInteger")]
 pub enum Status {
-    #[sea_orm(num_value = 0)]
+    #[sea_orm(num_value = 0i16)]
     Inactive,
-    #[sea_orm(num_value = 1)]
+    #[sea_orm(num_value = 1i16)]
     Active,
 }
 

@@ -1,8 +1,8 @@
 use chrono::Utc;
-use sea_orm::{ColumnTrait, DatabaseConnection, EntityTrait, QueryFilter, Set, ActiveModelTrait};
+use sea_orm::{ActiveModelTrait, ColumnTrait, DatabaseConnection, EntityTrait, QueryFilter, Set};
 
 use crate::{
-    dto::user::{LoginInput, RegisterInput},
+    dto::user::{LoginInput, SignupInput},
     error::{Error, Result},
     utils::encryption,
 };
@@ -26,20 +26,22 @@ impl UserService {
         }
     }
 
-    pub async fn sign_up(input: RegisterInput, db: &DatabaseConnection) -> Result<user::Model> {
+    pub async fn signup(input: SignupInput, db: &DatabaseConnection) -> Result<user::Model> {
         let email_exist = User::find()
-        .filter(user::Column::Email.contains(&input.email))
-        .one(db)
-        .await
-        .is_ok();
+            .filter(user::Column::Email.contains(&input.email))
+            .one(db)
+            .await
+            .unwrap()
+            .is_some();
         if email_exist {
             return Err(Error::DuplicateUserEmail);
         }
         let username_exist = User::find()
-        .filter(user::Column::Username.contains(&input.username))
-        .one(db)
-        .await
-        .is_ok();
+            .filter(user::Column::Username.contains(&input.username))
+            .one(db)
+            .await
+            .unwrap()
+            .is_some();
         if username_exist {
             return Err(Error::DuplicateUserName);
         }
@@ -47,11 +49,11 @@ impl UserService {
             username: Set(input.username),
             email: Set(input.email),
             password: Set(encryption::hash_password(input.password).await?),
-            create_at: Set(Utc::now()),
-            update_at: Set(Utc::now()),
-            ..Default::default() 
+            create_at: Set(Utc::now().to_owned()),
+            update_at: Set(Utc::now().to_owned()),
+            status: Set(user::Status::Inactive),
+            ..Default::default()
         };
-        
         let model: user::Model = model.insert(db).await.unwrap();
         Ok(model)
     }

@@ -46,7 +46,7 @@ impl MigrationTrait for Migration {
                     )
                     .col(
                         ColumnDef::new(user::Column::Status)
-                            .small_unsigned()
+                            .small_integer()
                             .not_null(),
                     )
                     .col(
