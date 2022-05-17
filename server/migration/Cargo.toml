@@ -11,4 +11,6 @@ path = "src/lib.rs"
 [dependencies]
 chrono = "0.4.19"
 entity = { path = "../entity" }
-sea-orm-migration = { version = "0.8.2", default-features = false }
+sea-orm-migration = { version = "0.8.2", default-features = false, features = [
+    "runtime-async-std-native-tls",
+] }
