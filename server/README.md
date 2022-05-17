@@ -64,3 +64,5 @@ cp .sample.env .env
 
 - [Axum JWT example](https://github.com/z4rx/axum_jwt_example)
 - [Book management](https://github.com/lz1998/axum-book-management)
+- [refinery](https://github.com/rust-db/refinery)
+- [barrel](https://crates.io/crates/barrel)
