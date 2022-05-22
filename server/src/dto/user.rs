@@ -1,4 +1,3 @@
-use entity::{client::ClientType, prelude::User};
 use validator::Validate;
 
 #[derive(Debug, Deserialize, Validate)]

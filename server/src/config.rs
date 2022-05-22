@@ -1,4 +1,5 @@
 use envconfig::Envconfig;
+use tokio::sync::OnceCell;
 
 #[derive(Envconfig, Clone, Debug)]
 pub struct Config {
@@ -12,6 +13,13 @@ pub struct Config {
     pub jwt_secret: String,
 }
 
-lazy_static! {
-    pub static ref APP_CONFIG: Config = Config::init_from_env().unwrap();
+impl Config {
+    pub async fn get() -> &'static Config {
+        static CONFIG: OnceCell<Config> = OnceCell::const_new();
+        CONFIG.get_or_init(Config::init).await
+    }
+
+    async fn init() -> Config {
+        Config::init_from_env().expect("Load config from env error")
+    }
 }

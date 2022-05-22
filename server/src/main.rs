@@ -1,7 +1,5 @@
 #[macro_use]
 extern crate serde;
-#[macro_use]
-extern crate lazy_static;
 
 mod api;
 mod app;
@@ -15,7 +13,7 @@ mod utils;
 
 use app::app;
 use axum::Server;
-use config::APP_CONFIG;
+use config::Config;
 #[cfg(debug_assertions)]
 use dotenv::dotenv;
 use std::net::SocketAddr;
@@ -29,10 +27,10 @@ async fn main() -> anyhow::Result<()> {
         .pretty()
         .with_max_level(tracing::Level::DEBUG)
         .init();
-
-    let addr = SocketAddr::from_str(&APP_CONFIG.server_url).unwrap();
+    let app_config = Config::get().await;
+    let addr = SocketAddr::from_str(&app_config.server_url).unwrap();
     Server::bind(&addr)
-        .serve(app(&APP_CONFIG).await.into_make_service())
+        .serve(app().await.into_make_service())
         .await?;
 
     Ok(())

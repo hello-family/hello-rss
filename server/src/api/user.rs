@@ -15,7 +15,7 @@ pub async fn signup(
 ) -> ApiResult<(StatusCode, Json<TokenPayload>)> {
     validate_payload(&payload)?;
     let user = UserService::signup(payload, &db).await?;
-    let token = jwt::sign(user.id)?;
+    let token = jwt::sign(user.id).await?;
     Ok((
         StatusCode::CREATED,
         Json(TokenPayload {

@@ -12,5 +12,5 @@ path = "src/lib.rs"
 chrono = "0.4.19"
 entity = { path = "../entity" }
 sea-orm-migration = { version = "0.8.2", default-features = false, features = [
-    "runtime-async-std-native-tls",
+    "runtime-tokio-native-tls",
 ] }
