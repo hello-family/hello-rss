@@ -66,3 +66,4 @@ cp .sample.env .env
 - [Book management](https://github.com/lz1998/axum-book-management)
 - [refinery](https://github.com/rust-db/refinery)
 - [barrel](https://crates.io/crates/barrel)
+- [sea-orm axum example](https://github.com/SeaQL/sea-orm/tree/master/examples/axum_example)
