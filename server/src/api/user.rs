@@ -11,7 +11,7 @@ use crate::{
 
 pub async fn signup(
     Json(payload): Json<SignupInput>,
-    Extension(db): Extension<DatabaseConnection>,
+    Extension(db): Extension<&DatabaseConnection>,
 ) -> ApiResult<(StatusCode, Json<TokenPayload>)> {
     validate_payload(&payload)?;
     let user = UserService::signup(payload, &db).await?;

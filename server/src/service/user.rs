@@ -13,7 +13,7 @@ pub struct UserService;
 impl UserService {
     pub async fn login(input: LoginInput, db: &DatabaseConnection) -> Result<user::Model> {
         let entity: user::Model = User::find()
-            .filter(user::Column::Username.contains(&input.username))
+            .filter(user::Column::Username.eq(input.username))
             .one(db)
             .await
             .unwrap()
@@ -28,7 +28,7 @@ impl UserService {
 
     pub async fn signup(input: SignupInput, db: &DatabaseConnection) -> Result<user::Model> {
         let email_exist = User::find()
-            .filter(user::Column::Email.contains(&input.email))
+            .filter(user::Column::Email.eq(input.email.as_str()))
             .one(db)
             .await
             .unwrap()
@@ -37,7 +37,7 @@ impl UserService {
             return Err(Error::DuplicateUserEmail);
         }
         let username_exist = User::find()
-            .filter(user::Column::Username.contains(&input.username))
+            .filter(user::Column::Username.eq(input.username.as_str()))
             .one(db)
             .await
             .unwrap()
@@ -47,7 +47,7 @@ impl UserService {
         }
         let model = user::ActiveModel {
             username: Set(input.username),
-            email: Set(input.email),
+            email: Set(input.email.clone()),
             password: Set(encryption::hash_password(input.password).await?),
             create_at: Set(Utc::now().naive_utc().to_owned()),
             update_at: Set(Utc::now().naive_utc().to_owned()),
