@@ -33,10 +33,10 @@ pub enum Relation {
     AccessToken,
 }
 
+impl ActiveModelBehavior for ActiveModel {}
+
 impl Related<super::access_token::Entity> for Entity {
     fn to() -> RelationDef {
         Relation::AccessToken.def()
     }
 }
-
-impl ActiveModelBehavior for ActiveModel {}
