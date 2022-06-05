@@ -1,6 +1,8 @@
+use async_graphql::SimpleObject;
 use sea_orm::entity::prelude::*;
+use serde::{Deserialize, Serialize};
 
-#[derive(Clone, Debug, PartialEq, DeriveEntityModel)]
+#[derive(Clone, Debug, PartialEq, DeriveEntityModel, Deserialize, Serialize, SimpleObject)]
 #[sea_orm(table_name = "favorite")]
 pub struct Model {
     #[sea_orm(primary_key)]

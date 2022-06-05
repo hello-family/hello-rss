@@ -6,6 +6,7 @@ edition = "2021"
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
 [dependencies]
+async-graphql = { version = "4.0.1", features = ["apollo_tracing", "apollo_persisted_queries", "log", "tracing", "chrono", "chrono-tz"] }
 chrono = "0.4.19"
 sea-orm = { version = "0.8.0", default-features = false, features = [
     "with-json",

@@ -67,3 +67,4 @@ cp .sample.env .env
 - [refinery](https://github.com/rust-db/refinery)
 - [barrel](https://crates.io/crates/barrel)
 - [sea-orm axum example](https://github.com/SeaQL/sea-orm/tree/master/examples/axum_example)
+- [axum example](https://github.com/tokio-rs/axum/tree/main/examples)

@@ -12,7 +12,10 @@ use tower_http::{
 };
 use uuid::Uuid;
 
-use crate::{db::Db, router::router};
+use crate::{
+    db::{init, DB},
+    router::router,
+};
 
 #[derive(Clone, Copy)]
 struct MakeRequestUuid;
@@ -25,7 +28,7 @@ impl MakeRequestId for MakeRequestUuid {
 }
 
 pub async fn app() -> Router {
-    let db = Db::get_conn().await;
+    let db = DB.get_or_init(init).await;
     Migrator::up(&db, None).await.unwrap();
 
     router().layer(

@@ -1,7 +1,8 @@
+use async_graphql::{Enum, SimpleObject};
 use sea_orm::entity::prelude::*;
 use serde::{Deserialize, Serialize};
 
-#[derive(Clone, Debug, PartialEq, DeriveEntityModel)]
+#[derive(Clone, Debug, PartialEq, DeriveEntityModel, Deserialize, Serialize, SimpleObject)]
 #[sea_orm(table_name = "client")]
 pub struct Model {
     #[sea_orm(primary_key)]
@@ -11,7 +12,9 @@ pub struct Model {
     pub create_at: DateTime,
 }
 
-#[derive(EnumIter, DeriveActiveEnum, Serialize, Deserialize, Debug, Clone, PartialEq)]
+#[derive(
+    EnumIter, DeriveActiveEnum, Serialize, Deserialize, Debug, Clone, PartialEq, Enum, Copy, Eq,
+)]
 #[sea_orm(rs_type = "String", db_type = "String(Some(12))")]
 pub enum ClientType {
     #[sea_orm(string_value = "Desktop")]

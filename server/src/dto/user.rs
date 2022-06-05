@@ -1,8 +1,9 @@
+use entity::{client::ClientType, user};
 use validator::Validate;
 
 #[derive(Debug, Deserialize, Validate)]
 pub struct SignupInput {
-    pub client: String,
+    pub client: ClientType,
     #[validate(length(min = 4, max = 10))]
     pub username: String,
     #[validate(email)]
@@ -13,7 +14,7 @@ pub struct SignupInput {
 
 #[derive(Debug, Deserialize, Validate)]
 pub struct LoginInput {
-    pub client: String,
+    pub client: ClientType,
     pub username: String,
     pub password: String,
 }

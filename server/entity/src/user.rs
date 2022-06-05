@@ -1,8 +1,10 @@
+use async_graphql::{Enum, SimpleObject};
 use sea_orm::entity::prelude::*;
 use serde::{Deserialize, Serialize};
 
-#[derive(Clone, Debug, PartialEq, DeriveEntityModel, Deserialize, Serialize)]
+#[derive(Clone, Debug, PartialEq, DeriveEntityModel, Deserialize, Serialize, SimpleObject)]
 #[sea_orm(table_name = "user")]
+#[graphql(concrete(name = "User", params()))]
 pub struct Model {
     #[sea_orm(primary_key)]
     pub id: i32,
@@ -23,7 +25,9 @@ pub struct Model {
     pub update_at: DateTime,
 }
 
-#[derive(EnumIter, DeriveActiveEnum, Serialize, Deserialize, Debug, Clone, PartialEq)]
+#[derive(
+    EnumIter, Enum, DeriveActiveEnum, Serialize, Deserialize, Debug, Clone, PartialEq, Eq, Copy,
+)]
 #[sea_orm(rs_type = "i16", db_type = "SmallInteger")]
 pub enum Status {
     #[sea_orm(num_value = 0i16)]

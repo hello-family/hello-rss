@@ -7,13 +7,14 @@ mod config;
 mod db;
 mod dto;
 mod error;
+mod extractor;
 mod router;
 mod service;
 mod utils;
 
 use app::app;
 use axum::Server;
-use config::Config;
+use config::APP_CONFIG;
 #[cfg(debug_assertions)]
 use dotenv::dotenv;
 use std::net::SocketAddr;
@@ -27,8 +28,7 @@ async fn main() -> anyhow::Result<()> {
         .pretty()
         .with_max_level(tracing::Level::DEBUG)
         .init();
-    let app_config = Config::get().await;
-    let addr = SocketAddr::from_str(&app_config.server_url).unwrap();
+    let addr = SocketAddr::from_str(&APP_CONFIG.server_url).unwrap();
     Server::bind(&addr)
         .serve(app().await.into_make_service())
         .await?;

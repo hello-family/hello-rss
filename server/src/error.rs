@@ -37,7 +37,7 @@ impl From<Error> for ApiError {
             Error::ValidationError(_) => StatusCode::BAD_REQUEST,
             _ => StatusCode::INTERNAL_SERVER_ERROR,
         };
-        let payload = json!({"message": err.to_string()});
+        let payload = json!({"error": err.to_string()});
         (status, Json(payload))
     }
 }

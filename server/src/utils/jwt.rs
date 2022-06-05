@@ -1,7 +1,7 @@
 use chrono::{Duration, Utc};
 use jsonwebtoken::{DecodingKey, EncodingKey, Header, Validation};
 
-use crate::{config::Config, error::Result};
+use crate::{config::APP_CONFIG, error::Result};
 
 #[derive(Debug, Deserialize, Serialize)]
 pub struct Claims {
@@ -24,19 +24,17 @@ impl Claims {
 }
 
 pub async fn sign(id: i32) -> Result<String> {
-    let app_config = Config::get().await;
     Ok(jsonwebtoken::encode(
         &Header::default(),
         &Claims::new(id),
-        &EncodingKey::from_secret(app_config.jwt_secret.as_bytes()),
+        &EncodingKey::from_secret(APP_CONFIG.jwt_secret.as_bytes()),
     )?)
 }
 
 pub async fn verify(token: &str) -> Result<Claims> {
-    let app_config = Config::get().await;
     Ok(jsonwebtoken::decode(
         token,
-        &DecodingKey::from_secret(app_config.jwt_secret.as_bytes()),
+        &DecodingKey::from_secret(APP_CONFIG.jwt_secret.as_bytes()),
         &Validation::default(),
     )
     .map(|data| data.claims)?)
