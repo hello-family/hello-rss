@@ -2,7 +2,7 @@ use axum::{routing::post, Router};
 
 mod user;
 
-pub fn user() -> Router {
+fn user() -> Router {
     Router::new().route("/signup", post(user::signup))
     // .route("/activate", get(user::activate))
     // .route("/login", get(user::login))
@@ -15,7 +15,7 @@ pub fn user() -> Router {
     // .route("/reset_password_confirm", get(user::reset_password_confirm))
 }
 
-pub fn rss() -> Router {
+fn rss() -> Router {
     Router::new()
     // .route("/channel_add", post(rss::channel_add))
     // .route("/channel_delete", post(rss::channel_delete))
@@ -28,9 +28,17 @@ pub fn rss() -> Router {
     // .route("/item_read", get(rss::item_read))
 }
 
-pub fn favorite() -> Router {
+ fn favorite() -> Router {
     Router::new()
     // .route("/list", get(favorite::list))
     // .route("/add", post(favorite::add))
     // .route("/delete", post(favorite::delete));
+}
+
+
+pub fn router() -> Router {
+    Router::new()
+        .nest("/user", user())
+        .nest("/rss", rss())
+        .nest("/favorite", favorite())
 }

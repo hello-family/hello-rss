@@ -46,7 +46,7 @@ impl MigrationTrait for Migration {
         manager
             .create_foreign_key(
                 ForeignKey::create()
-                    .name("fk_user")
+                    .name("fk_favorite_user_id")
                     .from(favorite::Entity, favorite::Column::UserId)
                     .to(user::Entity, user::Column::Id)
                     .to_owned(),
@@ -55,7 +55,7 @@ impl MigrationTrait for Migration {
         manager
             .create_foreign_key(
                 ForeignKey::create()
-                    .name("fk_rss_item")
+                    .name("fk_favorite_rss_item_id")
                     .from(favorite::Entity, favorite::Column::RssItemId)
                     .to(rss_item::Entity, rss_item::Column::Id)
                     .to_owned(),

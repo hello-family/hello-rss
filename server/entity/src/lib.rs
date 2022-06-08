@@ -7,3 +7,4 @@ pub mod rss_item;
 pub mod user;
 
 pub use sea_orm;
+pub use async_graphql;

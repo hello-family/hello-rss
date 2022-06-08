@@ -1,5 +1,5 @@
 use async_graphql::{Enum, SimpleObject};
-use sea_orm::entity::prelude::*;
+use sea_orm::{entity::prelude::*, DeleteMany};
 use serde::{Deserialize, Serialize};
 
 #[derive(Clone, Debug, PartialEq, DeriveEntityModel, Deserialize, Serialize, SimpleObject)]
@@ -65,3 +65,22 @@ impl Related<super::rss_item::Entity> for Entity {
 }
 
 impl ActiveModelBehavior for ActiveModel {}
+
+
+impl Entity {
+    pub fn find_by_id(id: i32) -> Select<Entity> {
+        Self::find().filter(Column::Id.eq(id))
+    }
+
+    pub fn find_by_username(username: &str) -> Select<Entity> {
+        Self::find().filter(Column::Username.eq(username))
+    }
+
+    pub fn find_by_email(email: &str) -> Select<Entity> {
+        Self::find().filter(Column::Email.eq(email))
+    }
+
+    pub fn delete_by_id(id: i32) -> DeleteMany<Entity> {
+        Self::delete_many().filter(Column::Id.eq(id))
+    }
+}

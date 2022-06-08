@@ -68,7 +68,7 @@ impl MigrationTrait for Migration {
         manager
             .create_foreign_key(
                 ForeignKey::create()
-                    .name("fk_user")
+                    .name("fk_access_token_user_id")
                     .from(access_token::Entity, access_token::Column::UserId)
                     .to(user::Entity, user::Column::Id)
                     .to_owned(),
@@ -77,7 +77,7 @@ impl MigrationTrait for Migration {
         manager
             .create_foreign_key(
                 ForeignKey::create()
-                    .name("fk_client")
+                    .name("fk_access_token_client_id")
                     .from(access_token::Entity, access_token::Column::ClientId)
                     .to(client::Entity, client::Column::Id)
                     .to_owned(),

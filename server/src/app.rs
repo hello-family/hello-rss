@@ -13,8 +13,8 @@ use tower_http::{
 use uuid::Uuid;
 
 use crate::{
+    api,
     db::{init, DB},
-    router::router,
 };
 
 #[derive(Clone, Copy)]
@@ -30,8 +30,7 @@ impl MakeRequestId for MakeRequestUuid {
 pub async fn app() -> Router {
     let db = DB.get_or_init(init).await;
     Migrator::up(&db, None).await.unwrap();
-
-    router().layer(
+    Router::new().nest("/api", api::router()).layer(
         ServiceBuilder::new()
             .set_x_request_id(MakeRequestUuid)
             .propagate_x_request_id()

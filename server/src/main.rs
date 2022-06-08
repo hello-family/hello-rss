@@ -8,10 +8,13 @@ mod db;
 mod dto;
 mod error;
 mod extractor;
-mod router;
 mod service;
 mod utils;
 
+use entity::async_graphql;
+
+use async_graphql::http::{playground_source, GraphQLPlaygroundConfig};
+use async_graphql_axum::{GraphQLRequest, GraphQLResponse};
 use app::app;
 use axum::Server;
 use config::APP_CONFIG;

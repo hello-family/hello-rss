@@ -76,7 +76,7 @@ impl MigrationTrait for Migration {
         manager
             .create_foreign_key(
                 ForeignKey::create()
-                    .name("fk_user")
+                    .name("fk_rss_channel_user_id")
                     .from(rss_channel::Entity, rss_channel::Column::UserId)
                     .to(user::Entity, user::Column::Id)
                     .to_owned(),
